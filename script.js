@@ -1,12 +1,22 @@
+const quoteContainer = document.getElementById('quote-container');
+const quoteText = document.getElementById('quote');
+const authorText = document.getElementById('author');
+const twitterBtn = document.getElementById('twitter');
+const newQuoteBtn = document.getElementById('new-quote');
+
 let apiQuotes = [];
 
 // Show New Quote
 function newQuote() {
-    // Generate random number
-    const randNum = Math.floor(Math.random() * apiQuotes.length);
     // Pick a random quote from apiQuotes array
-    const quote = apiQuotes[randNum];
-    console.log(quote);
+    const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
+    quoteText.textContent = quote.text;
+    /* Check if Author field is blank and replace it with unknown */
+    if (!quote.author) {
+        authorText.textContent = 'Unknown';
+    } else {
+        authorText.textContent = quote.author;
+    }
 }
 
 // Get Quotes From API
